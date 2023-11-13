@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img{
+        width: 100px;
+    }
+    div{
+        box-sizing: border-box;
+        box-shadow: 2px 2px 2px 2px  black
+    }
+</style>
+<body>
+    <div id="parant-box"></div>
+</body>
+<script>
+    fetch('/api/v1/todo/all')
+    .then((res)=>res.json())
+    .then((val)=>show(val))
+
+    const show=(data)=>{
+        data.map((ele)=>{
+            console.log(ele._id);
+            let title=document.createElement('h3')
+            title.innerHTML=ele.title
+            let img=document.createElement('img')
+            img.src=ele.image
+            let content=document.createElement('p')
+            content.innerHTML=ele.content
+
+            let btn=document.createElement("button")
+            btn.innerHTML="Delete"
+            btn.addEventListener("click",()=>{
+                window.location.href=`/api/v1/todo/delete/${ele._id}`
+            })
+            let div=document.createElement('div')
+            div.append(title,img,content,btn)
+
+            document.getElementById("parant-box").append(div)
+        })
+    }
+</script>
+</html>

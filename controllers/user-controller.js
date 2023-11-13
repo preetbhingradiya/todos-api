@@ -50,9 +50,5 @@ export const Login = async (req, res) => {
 };
 
 export const home =async (req, res) => {
-  let { token } = req.cookies;
-  let decode= jwt.verify(token,process.env.PRIVATE_KEY);
-  let {id}=decode
-    req.user=await User.findById(id)
-    res.send(req.user)
+  res.send(req.user)
 };
