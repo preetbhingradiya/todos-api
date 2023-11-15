@@ -6,12 +6,13 @@ export const GetTodo=(req,res)=>{
 
 export const AddTodo=async(req,res)=>{
     let {title,content,image}=req.body
-
+    req.body.userId = req.user.id;
     let todo=await Todo.create({
         title,
         image,
         content,
-        isCompleted:true
+        isCompleted:true,
+        userId:req.user._id,
     })
 
     res.send(todo)

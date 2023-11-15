@@ -43,7 +43,7 @@ export const Login = async (req, res) => {
         .json({ success: false, message: "please check Email or Password" });
 
     let token = jwt.sign({ id: user.id }, process.env.PRIVATE_KEY);
-    res.cookie("token", token, { maxAge: 2 * 60 * 1000 }).send({success:true,message:`Welcome back ${user.username}🖐`});
+    res.cookie("token", token,).send({success:true,message:`Welcome back ${user.username}🖐`});
   } catch (error) {
     res.send(error);
   }

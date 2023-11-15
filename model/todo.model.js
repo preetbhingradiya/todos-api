@@ -16,6 +16,11 @@ const TodoSchema = new mongoose.Schema({
     type:Boolean,
     default:false
   },
+  userId:{
+    type:mongoose.Schema.ObjectId,
+    ref:"User",
+    required:true,
+  }
 });
 
 export const Todo=mongoose.model("todo",TodoSchema)
